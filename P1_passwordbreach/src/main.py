@@ -1,4 +1,4 @@
-from hashing import hashing 
+from hashing import hashing
 from api import checkforbreach
 
 import getpass
