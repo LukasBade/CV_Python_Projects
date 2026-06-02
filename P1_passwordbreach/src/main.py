@@ -1,5 +1,5 @@
-from api import checkforbreach
 from hashing import hashing 
+from api import checkforbreach
 
 import getpass
 #adding another security feature besides hashing and splitting into prefix/suffix
