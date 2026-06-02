@@ -1,4 +1,14 @@
-This project checks whether your password has been used in the past and could be breached. Using the "https://haveibeenpwned.com" API, it uses the request and hashlib library.
+This project checks whether your password has been used in the past and could be breached.
 
-https://haveibeenpwned.com/API/v3
-pip install requests
+-- Requirements --
+1. Python 3
+2. requests library
+
+-- Install dependencies --
+1. pip install requests
+
+-- How to use --
+1. fire up main.py
+2. enter password (note: input is hidden)
+3. press enter
+4. consult results
