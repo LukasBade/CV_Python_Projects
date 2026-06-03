@@ -1,3 +1,5 @@
+This project is documenting my attempt at coding a working Discord bot. The capability of this bot will be expanded further upon the first functioning version. The end goal is a bot that can manage a community discord for a client. Additional features include music streaming on-demand and using external applications to enable customers to book appointments with the client. 
+
 -- Requirements --
 1. Python 3
 2. discord.py
@@ -15,7 +17,7 @@ or
 1. Create Discord bot on the developer page
 2. Generate token 
 3. Copy and paste the token into the .env file
-NOTE: DO NOT LEAK THE TOKEN (Future me: set .env File to private pls)
+NOTE: DO NOT LEAK THE TOKEN 
 
 For anyone copying this repo: .env file is set up like this:
 DISCORD_TOKEN=**YOURTOKEN**
