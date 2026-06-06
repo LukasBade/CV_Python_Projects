@@ -1,5 +1,4 @@
 import requests
-API_URL = "https://api.pwnedpasswords.com/range/"
 
 def checkforbreach(prefix, suffix):
     url = f"https://api.pwnedpasswords.com/range/{prefix}"
