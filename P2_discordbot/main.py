@@ -20,7 +20,8 @@ intents.members = True
 
 bot = commands.Bot(command_prefix="-", intents=intents)
 
-role = "Mitglied"
+role_name = "Mitglied"
+admin_role = "Admin"
 
 @bot.event
 async def on_ready():
@@ -48,15 +49,53 @@ async def hello(ctx):
     await ctx.send(f"Hello, {ctx.author.mention}!")
 
 
-@bot.command
+@bot.command()
 async def assign(ctx):
-    role = discord.utils.get(ctx.guild.roles, name=role)
+    role = discord.utils.get(ctx.guild.roles, name=role_name)
     if role:
         await ctx.author.add_roles(role)
         await ctx.send(f"{ctx.author.mention}, you have been assigned the '{role.name}' role!")
     else:
-        await ctx.send("Role 'Mitglied' not found.")
-    
-    
+        await ctx.send(f"Role '{role_name}' not found.")
+
+
+@bot.command()
+async def remove(ctx):
+    role = discord.utils.get(ctx.guild.roles, name=role_name)
+    if role:
+        await ctx.author.remove_roles(role)
+        await ctx.send(f"{ctx.author.mention}, the '{role.name}' role has been removed from you!")
+    else:
+        await ctx.send(f"Role '{role_name}' not found.")
+
+
+@bot.command()
+@commands.has_role(admin_role)
+async def secret(ctx):
+    await ctx.send("This is a secret message for admins only!")
+
+@secret.error
+async def secret_error(ctx, error):
+    if isinstance(error, commands.MissingRole):
+        await ctx.send("You do not have the required role to run this command.")
+
+
+@bot.command()
+async def direct(ctx, *, message):
+    await ctx.author.send("You said: " + message)
+
+
+@bot.command()
+async def reply(ctx):
+    await ctx.reply("Thanks for your message!", mention_author=True)
+
+
+@bot.command()
+async def polling(ctx, *, question):
+    embed = discord.Embed(title="Poll", description=question)
+    poll_message = await ctx.send(embed=embed)
+    await poll_message.add_reaction("👍")
+    await poll_message.add_reaction("👎")
+
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
