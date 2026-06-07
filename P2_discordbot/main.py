@@ -20,6 +20,8 @@ intents.members = True
 
 bot = commands.Bot(command_prefix="-", intents=intents)
 
+role = "Mitglied"
+
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user}")
@@ -48,10 +50,10 @@ async def hello(ctx):
 
 @bot.command
 async def assign(ctx):
-    role = discord.utils.get(ctx.guild.roles, name="Mitglied")
+    role = discord.utils.get(ctx.guild.roles, name=role)
     if role:
         await ctx.author.add_roles(role)
-        await ctx.send(f"{ctx.author.mention}, you have been assigned the 'Mitglied' role!")
+        await ctx.send(f"{ctx.author.mention}, you have been assigned the '{role.name}' role!")
     else:
         await ctx.send("Role 'Mitglied' not found.")
     
